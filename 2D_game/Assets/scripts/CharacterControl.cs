@@ -1,64 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class CharacterControl : MonoBehaviour {
 
-	// Use this for initialization
+	// Player Movement Variables
+	public int MoveSpeed;
+	public float JumpHeight;
 
-	//player movement variables
-	public float moveSpeed = 3;
-	public float JumpHeight = 6; 
-
-//player ground variables 
+	//Player grounded variables
 	public Transform groundCheck;
 	public float groundCheckRadius;
 	public LayerMask whatIsGround;
 	private bool grounded;
-	private bool doubleJump = true;
 
-	// //non-stick player 
-	private float moveVelocity;
-	
+	// Use this for initialization
 	void Start () {
-		
+	
 	}
 	
-	void FixedUpdate() {
+
+	void FixedUpdate () {
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
 	}
+
 	// Update is called once per frame
 	void Update () {
-		if(grounded) {
-			doubleJump = false;
-		}
-		// moveVelocity = 0f;
-		if(Input.GetKeyDown (KeyCode.W) && !doubleJump && !grounded ) {
-			Jump();
-			doubleJump = true;
-		}
-		if(Input.GetKeyDown (KeyCode.W) && grounded) {
+
+		// This code makes the character jump
+		if(Input.GetKeyDown (KeyCode.Space)&& grounded){
 			Jump();
 		}
-		if(Input.GetKeyDown (KeyCode.D)) {
-			MoveRight();
+
+		// This code makes the character move from side to side using the A&D keys
+		if(Input.GetKey (KeyCode.D)){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			
 		}
-		if(Input.GetKeyDown (KeyCode.A)) {
-			MoveLeft();
-		
-		GetComponent<Rigidbody2D>().velocity = new Vector2(moveVelocity, GetComponent<Rigidbody2D>().velocity.y);
-		moveVelocity = 0;
+		if(Input.GetKey (KeyCode.A)){
+			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
+			
 		}
+
 	}
-	public void Jump () {
+
+	public void Jump(){
 		GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, JumpHeight);
-	}
-	public void MoveRight () {
-		moveVelocity = moveSpeed;
-		Debug.Log("moves right");
-	}
-	public void MoveLeft () {
-		moveVelocity = -moveSpeed;
-		Debug.Log("moves right");
 	}
 }
