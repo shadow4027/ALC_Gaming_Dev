@@ -1,12 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class CharacterControl : MonoBehaviour {
-
-	// Player Movement Variables
+// Player Movement Variables
 	public int MoveSpeed;
 	public float JumpHeight;
-
+	private bool CanDoubleJump;
 	//Player grounded variables
 	public Transform groundCheck;
 	public float groundCheckRadius;
@@ -27,7 +27,8 @@ public class CharacterControl : MonoBehaviour {
 	void Update () {
 
 		// This code makes the character jump
-		if(Input.GetKeyDown (KeyCode.Space)&& grounded){
+		if(Input.GetKeyDown (KeyCode.W)&& grounded){
+			CanDoubleJump = true;
 			Jump();
 		}
 
