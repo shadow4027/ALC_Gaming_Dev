@@ -12,10 +12,13 @@ public class CharacterControl : MonoBehaviour {
 	public float groundCheckRadius;
 	public LayerMask whatIsGround;
 	private bool grounded;
-
+	public Vector3 Position;
+	private float XStart, YStart;
 	// Use this for initialization
 	void Start () {
-	
+		Position = transform.position;
+		XStart = Position.x;
+		YStart = Position.y;
 	}
 	
 
@@ -39,8 +42,14 @@ public class CharacterControl : MonoBehaviour {
 		}
 		if(Input.GetKey (KeyCode.A)){
 			GetComponent<Rigidbody2D>().velocity = new Vector2(-MoveSpeed, GetComponent<Rigidbody2D>().velocity.y);
-			
 		}
+
+		if(Input.GetKey (KeyCode.R)){
+			Position.x = XStart;
+			Position.y = YStart;
+			transform.position = Position;
+		}
+
 
 	}
 

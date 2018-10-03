@@ -14,7 +14,7 @@ public class EnemyPatrol : MonoBehaviour {
 	public LayerMask WhatIsWall;
 	private bool HittingWall;
 	// Edge Check
-	private bool NotAtEdge;
+	private bool NotAtEdge = ;
 	public Transform EdgeCheck;
 	
 	
