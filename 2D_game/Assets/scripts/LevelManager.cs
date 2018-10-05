@@ -27,6 +27,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void RespawnPlayer () {
+		Debug.Log("respawn");
 		StartCoroutine ("RespawnPlayerCo");
 	}
 
