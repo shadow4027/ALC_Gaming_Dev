@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour {
 
 	// Use this for initialization
 	public GameObject CurrentCheckPoint;
-	private Rigidbody2D PC;
+	public Rigidbody2D PC;
 
 	public GameObject DeathParticle;
 	public GameObject RespawnParticle;
@@ -18,7 +18,8 @@ public class LevelManager : MonoBehaviour {
 	private float GravityScore;
 
 	void start () {
-		PC = FindObjectOfType<Rigidbody2D> ();
+		//PC = FindObjectOfType<Rigidbody2D> ();
+		
 	}
 	
 	// Update is called once per frame
