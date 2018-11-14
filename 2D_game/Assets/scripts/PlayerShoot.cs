@@ -9,13 +9,14 @@ public class PlayerShoot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Projectile = GameObject.Find("Projectile");
+		// Projectile = GameObject.Find("Projectile");
+		Projectile = Resources.Load("Prefabs/Projectile") as GameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.RightControl)) {
-			Instantiate(Projectile,FirePoint.position, FirePoint.rotation);
+			Instantiate(Projectile, FirePoint.position, FirePoint.rotation);
 		}
 	}
 }

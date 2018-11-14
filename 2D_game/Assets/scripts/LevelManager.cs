@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
 	// Use this for initialization
 	public GameObject CurrentCheckPoint;
 	public Rigidbody2D PC;
+	public GameObject PC2;
 
 	public GameObject DeathParticle;
 	public GameObject RespawnParticle;
@@ -19,7 +20,8 @@ public class LevelManager : MonoBehaviour {
 
 	void start () {
 		//PC = FindObjectOfType<Rigidbody2D> ();
-		
+		PC = GameObject.Find("PC").GetComponent<Rigidbody2D>();
+		PC2 = GameObject.Find("PC");
 	}
 	
 	// Update is called once per frame
@@ -36,7 +38,7 @@ public class LevelManager : MonoBehaviour {
 		Instantiate (DeathParticle, PC.transform.position, PC.transform.rotation);
 		//hide pc
 		// pc.enabled  =  false;
-
+		PC2.SetActive(false);
 		PC.GetComponent<Renderer>().enabled = false;
 		//gravity reset
 		GravityScore = PC.GetComponent<Rigidbody2D>().gravityScale;
@@ -46,10 +48,10 @@ public class LevelManager : MonoBehaviour {
 		// Debug.log ("PC Respawn");
 
 		yield return new WaitForSeconds (RespawnDelay);
-
+																	
 		PC.GetComponent<Rigidbody2D>().gravityScale = GravityScore;
 		PC.transform.position = CurrentCheckPoint.transform.position;
-
+		PC2.SetActive(true);
 		PC.GetComponent<Renderer>().enabled = true;
 
 		Instantiate (RespawnParticle, CurrentCheckPoint.transform.position, CurrentCheckPoint.transform.rotation);
